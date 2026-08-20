@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tornado | Hub</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #0b132b;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: #1c2541;
+      width: 100%;
+      max-width: 420px;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border: 1px solid #3a506b;
+      text-align: center;
+    }
+
+    .profile-avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: #3a506b;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto 15px auto;
+      font-size: 2.5rem;
+      color: #4cc9f0;
+      border: 3px solid #4cc9f0;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 5px;
+      color: #ffffff;
+    }
+
+    .handle {
+      color: #4cc9f0;
+      font-size: 0.95rem;
+      margin-bottom: 25px;
+      font-weight: 600;
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .btn-discord {
+      background-color: #5865F2;
+      color: #ffffff;
+    }
+
+    .btn-discord:hover {
+      background-color: #4752C4;
+      transform: translateY(-2px);
+    }
+
+    .btn-dlls {
+      background-color: #3a506b;
+      color: #ffffff;
+      border: 1px solid #5bc0be;
+    }
+
+    .btn-dlls:hover {
+      background-color: #5bc0be;
+      color: #0b132b;
+      transform: translateY(-2px);
+    }
+
+    .toast {
+      visibility: hidden;
+      min-width: 200px;
+      background-color: #5bc0be;
+      color: #0b132b;
+      text-align: center;
+      border-radius: 8px;
+      padding: 12px;
+      position: fixed;
+      z-index: 1;
+      bottom: 30px;
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+
+    .toast.show {
+      visibility: visible;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="profile-avatar">
+      <i class="fa-solid fa-tornado"></i>
+    </div>
+    
+    <h1>Tornado</h1>
+    <div class="handle">@Tornado</div>
+
+    <div class="links">
+      <a href="https://discord.gg/uYeG2sagqV" target="_blank" class="btn btn-discord">
+        <i class="fa-brands fa-discord"></i> Discord Server
+      </a>
+
+      <button class="btn btn-dlls" onclick="showNotice()">
+        <i class="fa-solid fa-file-code"></i> DLLS
+      </button>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">DLLS: Coming Soon!</div>
+
+  <script>
+    function showNotice() {
+      const toast = document.getElementById("toast");
+      toast.classList.add("show");
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2500);
+    }
+  </script>
+
+</body>
+</html>
