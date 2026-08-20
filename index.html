@@ -35,9 +35,11 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* Vibrant Blue to Purple to Magenta Gradient Background */
+    /* Animated Gradient Background */
     body {
-      background: linear-gradient(135deg, #1822e6 0%, #7d12db 45%, #ca0a6d 80%, #ff0d2d 100%);
+      background: linear-gradient(-45deg, #1822e6, #7d12db, #ca0a6d, #ff0d2d);
+      background-size: 300% 300%;
+      animation: gradientShift 10s ease infinite;
       color: var(--text-main);
       min-height: 100vh;
       min-height: 100dvh;
@@ -47,6 +49,12 @@
       padding: 20px 16px;
       overflow-x: hidden;
       position: relative;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     /* Ambient Liquid Orbs */
@@ -88,7 +96,7 @@
       width: 100%;
       max-width: 460px;
       min-height: 640px;
-      padding: 48px 36px;
+      padding: 48px 36px 36px 36px;
       background: var(--glass-base);
       backdrop-filter: blur(35px) saturate(180%);
       -webkit-backdrop-filter: blur(35px) saturate(180%);
@@ -180,7 +188,7 @@
       color: #ffffff;
       font-size: 0.95rem;
       font-weight: 700;
-      margin-bottom: 32px;
+      margin-bottom: 28px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     }
 
@@ -285,6 +293,31 @@
       box-shadow: 0 15px 35px rgba(88, 101, 242, 0.4);
     }
 
+    /* Small Credits Button */
+    .credits-btn {
+      margin-top: 24px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: rgba(255, 255, 255, 0.7);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      align-self: center;
+    }
+
+    .credits-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.5);
+      transform: translateY(-2px);
+    }
+
     /* Future Updates Page Layout */
     .notice-card {
       background: rgba(255, 255, 255, 0.05);
@@ -368,7 +401,7 @@
       }
 
       .hub-card {
-        padding: 36px 20px;
+        padding: 36px 20px 24px 20px;
         border-radius: 32px;
         min-height: auto;
       }
@@ -465,6 +498,12 @@
         </button>
 
       </div>
+
+      <!-- Small Credits Button -->
+      <button class="credits-btn" onclick="openCreditsModal()">
+        <i class="fa-solid fa-heart" style="color: #ff007f;"></i> Credits
+      </button>
+
     </div>
 
     <!-- PAGE 2: Future Updates Page -->
@@ -508,6 +547,18 @@
     </div>
   </div>
 
+  <!-- Modal for Credits -->
+  <div id="creditsModalOverlay" class="modal-backdrop" onclick="closeCreditsModalOnOutside(event)">
+    <div class="modal-box">
+      <i class="fa-solid fa-heart" style="font-size: 2.5rem; color: #ff007f; margin-bottom: 15px;"></i>
+      <h2 style="font-size: 1.5rem; margin-bottom: 10px;">Credits</h2>
+      <p style="color: var(--text-sub); font-size: 0.95rem; line-height: 1.6;">
+        Credits to my friend <strong>Tvman</strong> for me wanting to make this hub! Also credits to <strong>stripes vr</strong> for making the first ever hub
+      </p>
+      <button class="modal-btn" onclick="closeCreditsModal()">Close</button>
+    </div>
+  </div>
+
   <script>
     function switchTab(pageId) {
       document.getElementById('mainPage').classList.toggle('hidden', pageId !== 'mainPage');
@@ -524,6 +575,18 @@
 
     function closeModalOnOutside(e) {
       if (e.target.id === 'modalOverlay') closeModal();
+    }
+
+    function openCreditsModal() {
+      document.getElementById('creditsModalOverlay').classList.add('active');
+    }
+
+    function closeCreditsModal() {
+      document.getElementById('creditsModalOverlay').classList.remove('active');
+    }
+
+    function closeCreditsModalOnOutside(e) {
+      if (e.target.id === 'creditsModalOverlay') closeCreditsModal();
     }
   </script>
 
