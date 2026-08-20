@@ -2,7 +2,8 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ["main"] # Change to "master" if your default branch name is master
+    branches: ["main"] # Change to "master" if your default branch is named master
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -24,8 +25,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Inject Secret into index.html
+        env:
+          HOOK_URL: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
-          sed -i 's|REPLACE_WITH_DISCORD_WEBHOOK|${{ secrets.DISCORD_WEBHOOK }}|g' index.html
+          sed -i "s|REPLACE_WITH_DISCORD_WEBHOOK|$HOOK_URL|g" index.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
