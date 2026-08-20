@@ -35,19 +35,22 @@
       -webkit-tap-highlight-color: transparent;
     }
 
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden; /* Prevents all page scrolling */
+    }
+
     /* Animated Gradient Background */
     body {
       background: linear-gradient(-45deg, #1822e6, #7d12db, #ca0a6d, #ff0d2d);
       background-size: 300% 300%;
       animation: gradientShift 10s ease infinite;
       color: var(--text-main);
-      min-height: 100vh;
-      min-height: 100dvh;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px 16px;
-      overflow-x: hidden;
+      padding: 16px;
       position: relative;
     }
 
@@ -94,13 +97,13 @@
       position: relative;
       z-index: 1;
       width: 100%;
-      max-width: 460px;
-      min-height: 640px;
-      padding: 48px 36px 36px 36px;
+      max-width: 440px;
+      max-height: 95vh;
+      padding: 36px 28px 28px 28px;
       background: var(--glass-base);
       backdrop-filter: blur(35px) saturate(180%);
       -webkit-backdrop-filter: blur(35px) saturate(180%);
-      border-radius: 40px;
+      border-radius: 36px;
       border: 1px solid var(--glass-border);
       box-shadow: 
         0 30px 80px rgba(0, 0, 0, 0.6),
@@ -130,9 +133,9 @@
     /* Profile Avatar Header */
     .avatar-wrapper {
       position: relative;
-      width: 110px;
-      height: 110px;
-      margin: 0 auto 20px auto;
+      width: 95px;
+      height: 95px;
+      margin: 0 auto 16px auto;
     }
 
     .avatar-glow-ring {
@@ -167,13 +170,13 @@
 
     /* Header & Tag */
     h1 {
-      font-size: 2.2rem;
+      font-size: 2rem;
       font-weight: 800;
       letter-spacing: -0.5px;
       background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       word-break: break-word;
     }
 
@@ -181,14 +184,14 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 6px 18px;
+      padding: 5px 16px;
       border-radius: 25px;
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.3);
       color: #ffffff;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       font-weight: 700;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     }
 
@@ -196,7 +199,7 @@
     .menu-list {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 16px;
       width: 100%;
     }
 
@@ -207,11 +210,11 @@
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      padding: 20px 24px;
-      border-radius: 24px;
+      padding: 18px 20px;
+      border-radius: 22px;
       text-decoration: none;
       color: var(--text-main);
-      font-size: 1.05rem;
+      font-size: 1rem;
       font-weight: 700;
       border: 1px solid var(--glass-border);
       background: linear-gradient(
@@ -247,7 +250,7 @@
     }
 
     .liquid-item:hover, .liquid-item:active {
-      transform: translateY(-4px) scale(1.02);
+      transform: translateY(-3px) scale(1.01);
       border-color: rgba(255, 255, 255, 0.6);
       box-shadow: 
         0 15px 35px rgba(230, 10, 100, 0.35),
@@ -261,21 +264,21 @@
     .btn-left-content {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
       z-index: 2;
     }
 
     .btn-left-content i {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       transition: transform 0.3s ease;
     }
 
     .liquid-item:hover .btn-left-content i {
-      transform: scale(1.2);
+      transform: scale(1.15);
     }
 
     .arrow-icon {
-      font-size: 1rem;
+      font-size: 0.95rem;
       opacity: 0.6;
       z-index: 2;
       transition: all 0.3s ease;
@@ -283,7 +286,7 @@
 
     .liquid-item:hover .arrow-icon {
       opacity: 1;
-      transform: translateX(5px);
+      transform: translateX(4px);
       color: #ffffff;
     }
 
@@ -295,13 +298,13 @@
 
     /* Small Credits Button */
     .credits-btn {
-      margin-top: 24px;
+      margin-top: 20px;
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.2);
       color: rgba(255, 255, 255, 0.7);
-      padding: 8px 16px;
+      padding: 7px 14px;
       border-radius: 20px;
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.3s ease;
@@ -322,17 +325,17 @@
     .notice-card {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid var(--glass-border);
-      border-radius: 24px;
-      padding: 28px 20px;
-      margin: 20px 0 30px 0;
+      border-radius: 20px;
+      padding: 24px 18px;
+      margin: 16px 0 24px 0;
       width: 100%;
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
     }
 
     .notice-text {
-      font-size: 1.05rem;
+      font-size: 1rem;
       color: var(--text-main);
-      line-height: 1.6;
+      line-height: 1.5;
       font-weight: 600;
     }
 
@@ -366,9 +369,9 @@
     .modal-box {
       background: rgba(25, 10, 40, 0.9);
       border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 32px;
-      padding: 36px 24px;
-      max-width: 380px;
+      border-radius: 30px;
+      padding: 32px 20px;
+      max-width: 360px;
       width: 100%;
       text-align: center;
       box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(216, 0, 117, 0.3);
@@ -382,64 +385,54 @@
 
     .modal-btn {
       width: 100%;
-      padding: 14px;
+      padding: 13px;
       border-radius: 16px;
       border: none;
       background: linear-gradient(135deg, #1e3aff, #d80075);
       color: #ffffff;
       font-weight: 800;
-      font-size: 1rem;
+      font-size: 0.95rem;
       cursor: pointer;
-      margin-top: 20px;
+      margin-top: 18px;
       box-shadow: 0 8px 20px rgba(216, 0, 117, 0.4);
     }
 
     /* Mobile Responsive Optimizations */
     @media (max-width: 480px) {
-      body {
-        padding: 16px 12px;
-      }
-
       .hub-card {
-        padding: 36px 20px 24px 20px;
-        border-radius: 32px;
-        min-height: auto;
+        padding: 28px 16px 20px 16px;
+        border-radius: 28px;
       }
 
       .avatar-wrapper {
-        width: 95px;
-        height: 95px;
-        margin-bottom: 16px;
+        width: 80px;
+        height: 80px;
+        margin-bottom: 12px;
       }
 
       h1 {
-        font-size: 1.85rem;
+        font-size: 1.65rem;
       }
 
       .user-tag {
-        font-size: 0.88rem;
-        padding: 5px 14px;
-        margin-bottom: 24px;
+        font-size: 0.82rem;
+        padding: 4px 12px;
+        margin-bottom: 18px;
       }
 
       .menu-list {
-        gap: 16px;
+        gap: 12px;
       }
 
       .liquid-item {
-        padding: 18px 20px;
-        font-size: 1rem;
-        border-radius: 20px;
+        padding: 15px 16px;
+        font-size: 0.92rem;
+        border-radius: 18px;
       }
 
-      .orb-1 {
-        width: 300px;
-        height: 300px;
-      }
-
-      .orb-2 {
-        width: 300px;
-        height: 300px;
+      .orb-1, .orb-2 {
+        width: 260px;
+        height: 260px;
       }
     }
   </style>
@@ -509,7 +502,7 @@
     <!-- PAGE 2: Future Updates Page -->
     <div id="futurePage" class="page hidden">
       
-      <div class="avatar-wrapper" style="width: 80px; height: 80px;">
+      <div class="avatar-wrapper" style="width: 70px; height: 70px;">
         <div class="avatar-glass-box">
           <img src="TornadoIcon.png" alt="Tornado Icon" class="avatar-img">
         </div>
@@ -540,9 +533,9 @@
   <!-- Modal for DLLS -->
   <div id="modalOverlay" class="modal-backdrop" onclick="closeModalOnOutside(event)">
     <div class="modal-box">
-      <i class="fa-solid fa-hourglass-half" style="font-size: 2.5rem; color: #ff52a8; margin-bottom: 15px;"></i>
-      <h2 style="font-size: 1.5rem; margin-bottom: 10px;">DLLS Status</h2>
-      <p style="color: var(--text-sub); font-size: 0.95rem;">This module is currently under construction and will release soon.</p>
+      <i class="fa-solid fa-hourglass-half" style="font-size: 2.2rem; color: #ff52a8; margin-bottom: 12px;"></i>
+      <h2 style="font-size: 1.4rem; margin-bottom: 8px;">DLLS Status</h2>
+      <p style="color: var(--text-sub); font-size: 0.9rem;">This module is currently under construction and will release soon.</p>
       <button class="modal-btn" onclick="closeModal()">Coming Soon</button>
     </div>
   </div>
@@ -550,9 +543,9 @@
   <!-- Modal for Credits -->
   <div id="creditsModalOverlay" class="modal-backdrop" onclick="closeCreditsModalOnOutside(event)">
     <div class="modal-box">
-      <i class="fa-solid fa-heart" style="font-size: 2.5rem; color: #ff007f; margin-bottom: 15px;"></i>
-      <h2 style="font-size: 1.5rem; margin-bottom: 10px;">Credits</h2>
-      <p style="color: var(--text-sub); font-size: 0.95rem; line-height: 1.6;">
+      <i class="fa-solid fa-heart" style="font-size: 2.2rem; color: #ff007f; margin-bottom: 12px;"></i>
+      <h2 style="font-size: 1.4rem; margin-bottom: 8px;">Credits</h2>
+      <p style="color: var(--text-sub); font-size: 0.9rem; line-height: 1.5;">
         Credits to my friend <strong>Tvman</strong> for me wanting to make this hub! Also credits to <strong>stripes vr</strong> for making the first ever hub
       </p>
       <button class="modal-btn" onclick="closeCreditsModal()">Close</button>
