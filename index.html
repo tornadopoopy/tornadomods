@@ -3,10 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <!-- Webpage Title (Browser Tab Name) -->
   <title>Tornado Hub</title>
   
-  <!-- Fonts & Font Awesome Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -38,10 +36,9 @@
     html, body {
       width: 100%;
       height: 100%;
-      overflow: hidden; /* Prevents all page scrolling */
+      overflow: hidden;
     }
 
-    /* Animated Gradient Background */
     body {
       background: linear-gradient(-45deg, #1822e6, #7d12db, #ca0a6d, #ff0d2d);
       background-size: 300% 300%;
@@ -60,7 +57,6 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* Ambient Liquid Orbs */
     .liquid-orb {
       position: absolute;
       border-radius: 50%;
@@ -92,7 +88,6 @@
       100% { transform: translate(40px, 50px) scale(1.1); }
     }
 
-    /* Frosted Liquid Glass Card Container */
     .hub-card {
       position: relative;
       z-index: 1;
@@ -115,7 +110,6 @@
       justify-content: space-between;
     }
 
-    /* Page Switcher */
     .page {
       display: flex;
       flex-direction: column;
@@ -130,7 +124,6 @@
       transform: scale(0.96);
     }
 
-    /* Profile Avatar Header */
     .avatar-wrapper {
       position: relative;
       width: 90px;
@@ -168,7 +161,6 @@
       border-radius: 50%;
     }
 
-    /* Header & Tag */
     h1 {
       font-size: 1.9rem;
       font-weight: 800;
@@ -195,7 +187,6 @@
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     }
 
-    /* Liquid Glass Menu List */
     .menu-list {
       display: flex;
       flex-direction: column;
@@ -203,7 +194,6 @@
       width: 100%;
     }
 
-    /* Interactive Liquid Buttons */
     .liquid-item {
       position: relative;
       display: flex;
@@ -231,7 +221,6 @@
       transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    /* Liquid Sheen Animation */
     .liquid-item::before {
       content: '';
       position: absolute;
@@ -296,7 +285,6 @@
       box-shadow: 0 15px 35px rgba(88, 101, 242, 0.4);
     }
 
-    /* Feedback Textarea Input */
     .feedback-textarea {
       width: 100%;
       height: 100px;
@@ -320,7 +308,6 @@
       border-color: rgba(255, 255, 255, 0.6);
     }
 
-    /* Small Credits Button */
     .credits-btn {
       margin-top: 16px;
       background: rgba(255, 255, 255, 0.08);
@@ -345,7 +332,6 @@
       transform: translateY(-2px);
     }
 
-    /* Future Updates Page Layout */
     .notice-card {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid var(--glass-border);
@@ -368,7 +354,6 @@
       background: rgba(255, 255, 255, 0.08);
     }
 
-    /* Modal Styling */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -421,7 +406,6 @@
       box-shadow: 0 8px 20px rgba(216, 0, 117, 0.4);
     }
 
-    /* Mobile Responsive Optimizations */
     @media (max-width: 480px) {
       .hub-card {
         padding: 24px 16px 18px 16px;
@@ -463,14 +447,11 @@
 </head>
 <body>
 
-  <!-- Ambient Liquid Glow Background Orbs -->
   <div class="liquid-orb orb-1"></div>
   <div class="liquid-orb orb-2"></div>
 
-  <!-- Main Card Container -->
   <div class="hub-card">
     
-    <!-- PAGE 1: Main Menu -->
     <div id="mainPage" class="page">
       
       <div class="avatar-wrapper">
@@ -487,7 +468,6 @@
 
       <div class="menu-list">
         
-        <!-- Discord Link -->
         <a href="https://discord.gg/uYeG2sagqV" target="_blank" class="liquid-item btn-discord">
           <div class="btn-left-content">
             <i class="fa-brands fa-discord" style="color: #7289da;"></i>
@@ -496,7 +476,6 @@
           <i class="fa-solid fa-arrow-right-long arrow-icon"></i>
         </a>
 
-        <!-- DLLS Button -->
         <button class="liquid-item" onclick="openModal()">
           <div class="btn-left-content">
             <i class="fa-solid fa-cube" style="color: #ff52a8;"></i>
@@ -505,7 +484,6 @@
           <i class="fa-solid fa-chevron-right arrow-icon"></i>
         </button>
 
-        <!-- Feedback Button -->
         <button class="liquid-item" onclick="openFeedbackModal()">
           <div class="btn-left-content">
             <i class="fa-solid fa-comment-dots" style="color: #00f2fe;"></i>
@@ -514,7 +492,6 @@
           <i class="fa-solid fa-chevron-right arrow-icon"></i>
         </button>
 
-        <!-- Future Updates Switcher -->
         <button class="liquid-item" onclick="switchTab('futurePage')">
           <div class="btn-left-content">
             <i class="fa-solid fa-compass" style="color: #7b73ff;"></i>
@@ -525,14 +502,12 @@
 
       </div>
 
-      <!-- Small Credits Button -->
       <button class="credits-btn" onclick="openCreditsModal()">
         <i class="fa-solid fa-heart" style="color: #ff007f;"></i> Credits
       </button>
 
     </div>
 
-    <!-- PAGE 2: Future Updates Page -->
     <div id="futurePage" class="page hidden">
       
       <div class="avatar-wrapper" style="width: 70px; height: 70px;">
@@ -563,7 +538,6 @@
 
   </div>
 
-  <!-- Modal for DLLS -->
   <div id="modalOverlay" class="modal-backdrop" onclick="closeModalOnOutside(event)">
     <div class="modal-box">
       <i class="fa-solid fa-hourglass-half" style="font-size: 2.2rem; color: #ff52a8; margin-bottom: 12px;"></i>
@@ -573,7 +547,6 @@
     </div>
   </div>
 
-  <!-- Modal for Feedback -->
   <div id="feedbackModalOverlay" class="modal-backdrop" onclick="closeFeedbackModalOnOutside(event)">
     <div class="modal-box">
       <i class="fa-solid fa-paper-plane" style="font-size: 2.2rem; color: #00f2fe; margin-bottom: 12px;"></i>
@@ -584,7 +557,6 @@
     </div>
   </div>
 
-  <!-- Modal for Credits -->
   <div id="creditsModalOverlay" class="modal-backdrop" onclick="closeCreditsModalOnOutside(event)">
     <div class="modal-box">
       <i class="fa-solid fa-heart" style="font-size: 2.2rem; color: #ff007f; margin-bottom: 12px;"></i>
@@ -597,7 +569,8 @@
   </div>
 
   <script>
-    const DISCORD_WEBHOOK_URL = "$DISCORD_WEBHOOK";
+    // GitHub Action will swap REPLACE_WITH_DISCORD_WEBHOOK with your repo secret
+    const DISCORD_WEBHOOK_URL = "REPLACE_WITH_DISCORD_WEBHOOK";
 
     function switchTab(pageId) {
       document.getElementById('mainPage').classList.toggle('hidden', pageId !== 'mainPage');
@@ -651,7 +624,7 @@
       }
 
       if (!DISCORD_WEBHOOK_URL || !DISCORD_WEBHOOK_URL.startsWith("http")) {
-        alert("Webhook URL is not valid or has not been replaced yet.");
+        alert("Webhook URL non-functional or not injected yet.");
         return;
       }
 
