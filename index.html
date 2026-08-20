@@ -3,330 +3,440 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tornado | Official Hub</title>
-  <!-- Google Fonts & Font Awesome Icons -->
+  <title>Tornado Hub</title>
+  <!-- Google Fonts & Font Awesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
     :root {
-      --bg-dark: #070b19;
-      --card-bg: rgba(15, 23, 42, 0.65);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --primary-cyan: #38bdf8;
-      --secondary-blue: #6366f1;
-      --accent-glow: rgba(56, 189, 248, 0.15);
-      --discord-purple: #5865F2;
+      --navy-dark: #030712;
+      --navy-mid: #0b1528;
+      --navy-accent: #1e293b;
+      --cyan-glow: #00f0ff;
+      --blue-glow: #3b82f6;
+      --glass-bg: rgba(15, 23, 42, 0.45);
+      --glass-border: rgba(255, 255, 255, 0.12);
+      --glass-shine: rgba(255, 255, 255, 0.25);
       --text-main: #f8fafc;
-      --text-muted: #94a3b8;
+      --text-sub: #94a3b8;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Space Grotesk', sans-serif;
+      user-select: none;
     }
 
+    /* Deep Navy Blue to Black Animated Gradient Background */
     body {
-      background-color: var(--bg-dark);
+      background: radial-gradient(circle at 50% 0%, #0d1d3a 0%, #030712 70%, #000000 100%);
       color: var(--text-main);
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 20px;
-      overflow-x: hidden;
+      overflow: hidden;
       position: relative;
     }
 
-    /* Dynamic Background Elements */
-    .bg-glow {
+    /* Ambient Liquid Orbs in Background */
+    .orb {
       position: absolute;
-      width: 350px;
-      height: 350px;
-      background: radial-gradient(circle, var(--secondary-blue) 0%, rgba(0,0,0,0) 70%);
-      top: 15%;
-      left: 20%;
-      filter: blur(90px);
-      opacity: 0.35;
+      border-radius: 50%;
+      filter: blur(100px);
       z-index: 0;
-      animation: float 8s ease-in-out infinite alternate;
+      pointer-events: none;
+      animation: float 12s infinite ease-in-out alternate;
     }
 
-    .bg-glow-2 {
-      position: absolute;
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle, var(--primary-cyan) 0%, rgba(0,0,0,0) 70%);
-      bottom: 15%;
-      right: 20%;
-      filter: blur(90px);
-      opacity: 0.25;
-      z-index: 0;
-      animation: float 10s ease-in-out infinite alternate-reverse;
+    .orb-1 {
+      width: 450px;
+      height: 450px;
+      background: rgba(0, 240, 255, 0.15);
+      top: -100px;
+      left: -100px;
+    }
+
+    .orb-2 {
+      width: 500px;
+      height: 500px;
+      background: rgba(59, 130, 246, 0.18);
+      bottom: -150px;
+      right: -100px;
+      animation-delay: -6s;
     }
 
     @keyframes float {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(30px, 40px); }
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(50px, 40px) scale(1.1); }
     }
 
-    /* Glassmorphism Card Container */
-    .container {
+    /* Central Liquid Glass Container */
+    .glass-hub {
       position: relative;
       z-index: 1;
-      background: var(--card-bg);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
       width: 100%;
-      max-width: 400px;
-      padding: 40px 30px;
-      border-radius: 24px;
-      border: 1px solid var(--card-border);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6),
-                  inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      max-width: 440px;
+      padding: 40px 32px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(28px) saturate(190%);
+      -webkit-backdrop-filter: blur(28px) saturate(190%);
+      border-radius: 32px;
+      border: 1px solid var(--glass-border);
+      box-shadow: 
+        0 30px 60px rgba(0, 0, 0, 0.7),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.5);
       text-align: center;
+      animation: hubAppear 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    /* Profile Avatar & Ring Glow */
-    .avatar-wrapper {
+    @keyframes hubAppear {
+      0% { opacity: 0; transform: translateY(30px) scale(0.95); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Avatar Container with Pulsing Glass Ring */
+    .avatar-container {
       position: relative;
-      width: 100px;
-      height: 100px;
+      width: 105px;
+      height: 105px;
       margin: 0 auto 20px auto;
     }
 
-    .avatar-wrapper::before {
-      content: '';
+    .avatar-glow {
       position: absolute;
-      inset: -3px;
+      inset: -4px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary-cyan), var(--secondary-blue));
-      filter: blur(8px);
-      opacity: 0.7;
+      background: linear-gradient(135deg, var(--cyan-glow), var(--blue-glow));
+      filter: blur(12px);
+      opacity: 0.6;
+      animation: pulseGlow 4s infinite alternate;
     }
 
-    .profile-avatar {
+    @keyframes pulseGlow {
+      0% { opacity: 0.4; transform: scale(0.98); }
+      100% { opacity: 0.8; transform: scale(1.05); }
+    }
+
+    .avatar-glass {
       position: relative;
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      background: #0f172a;
+      background: rgba(11, 21, 40, 0.8);
+      border: 1.5px solid rgba(255, 255, 255, 0.3);
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       font-size: 2.8rem;
-      color: var(--primary-cyan);
-      border: 2px solid rgba(255, 255, 255, 0.1);
+      color: var(--cyan-glow);
+      box-shadow: inset 0 4px 10px rgba(255, 255, 255, 0.2);
     }
 
-    .profile-avatar i {
-      animation: spin 20s linear infinite;
+    .avatar-glass i {
+      animation: tornadoSpin 15s linear infinite;
     }
 
-    @keyframes spin {
+    @keyframes tornadoSpin {
+      0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
 
-    /* Typography */
+    /* Titles & Handles */
     h1 {
-      font-size: 2rem;
-      font-weight: 800;
+      font-size: 2.2rem;
+      font-weight: 700;
       letter-spacing: -0.5px;
-      margin-bottom: 6px;
-      background: linear-gradient(135deg, #ffffff 30%, var(--primary-cyan));
+      background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      margin-bottom: 6px;
     }
 
-    .handle-badge {
+    .handle-pill {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(56, 189, 248, 0.08);
-      border: 1px solid rgba(56, 189, 248, 0.2);
-      color: var(--primary-cyan);
-      padding: 6px 14px;
+      padding: 6px 16px;
       border-radius: 20px;
-      font-size: 0.85rem;
+      background: rgba(0, 240, 255, 0.06);
+      border: 1px solid rgba(0, 240, 255, 0.25);
+      color: var(--cyan-glow);
+      font-size: 0.9rem;
       font-weight: 600;
-      margin-bottom: 30px;
-      letter-spacing: 0.3px;
+      margin-bottom: 32px;
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
     }
 
-    /* Navigation Links / Buttons */
-    .links {
+    /* Liquid Glass Buttons Stack */
+    .menu-stack {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 18px;
     }
 
-    .btn {
+    /* Liquid Glass Button Base Styling */
+    .liquid-btn {
       position: relative;
       display: flex;
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      padding: 16px 20px;
-      border-radius: 14px;
-      font-size: 0.95rem;
-      font-weight: 600;
+      padding: 18px 24px;
+      border-radius: 20px;
       text-decoration: none;
-      border: 1px solid transparent;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      overflow: hidden;
-    }
-
-    .btn i.left-icon {
-      font-size: 1.25rem;
-    }
-
-    .btn i.arrow-icon {
-      font-size: 0.8rem;
-      opacity: 0.5;
-      transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-
-    .btn-content {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    /* Discord Button Styling */
-    .btn-discord {
-      background: linear-gradient(135deg, #5865F2, #4752C4);
-      color: #ffffff;
-      box-shadow: 0 4px 20px rgba(88, 101, 242, 0.3);
-    }
-
-    .btn-discord:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(88, 101, 242, 0.5);
-    }
-
-    .btn-discord:hover .arrow-icon {
-      transform: translateX(4px);
-      opacity: 1;
-    }
-
-    /* DLLS Button Styling */
-    .btn-dlls {
-      background: rgba(255, 255, 255, 0.03);
       color: var(--text-main);
-      border: 1px solid var(--card-border);
-      backdrop-filter: blur(10px);
-    }
-
-    .btn-dlls:hover {
-      background: rgba(255, 255, 255, 0.07);
-      border-color: rgba(56, 189, 248, 0.4);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-    }
-
-    .btn-dlls:hover .arrow-icon {
-      transform: translateX(4px);
-      opacity: 1;
-    }
-
-    /* Fancy Glass Toast Notification */
-    .toast {
-      position: fixed;
-      bottom: -100px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid var(--primary-cyan);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
-                  0 0 15px rgba(56, 189, 248, 0.2);
-      backdrop-filter: blur(12px);
-      color: var(--text-main);
-      padding: 12px 24px;
-      border-radius: 30px;
-      font-size: 0.9rem;
+      font-size: 1.05rem;
       font-weight: 600;
+      border: 1px solid var(--glass-border);
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.03) 50%,
+        rgba(0, 0, 0, 0.2) 100%
+      );
+      box-shadow: 
+        0 8px 20px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 var(--glass-shine);
+      cursor: pointer;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    /* Liquid Highlight Light Beam Effect */
+    .liquid-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      );
+      transition: 0.6s ease;
+    }
+
+    /* Hover State for Buttons */
+    .liquid-btn:hover {
+      transform: translateY(-4px) scale(1.02);
+      border-color: rgba(0, 240, 255, 0.5);
+      box-shadow: 
+        0 12px 30px rgba(0, 240, 255, 0.25),
+        inset 0 1px 1px rgba(255, 255, 255, 0.5);
+    }
+
+    .liquid-btn:hover::before {
+      left: 100%;
+    }
+
+    .btn-left {
       display: flex;
       align-items: center;
-      gap: 10px;
-      z-index: 10;
-      transition: bottom 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      gap: 14px;
+      z-index: 2;
     }
 
-    .toast i {
-      color: var(--primary-cyan);
+    .btn-left i {
+      font-size: 1.3rem;
+      transition: transform 0.3s ease;
     }
 
-    .toast.show {
-      bottom: 40px;
+    .liquid-btn:hover .btn-left i {
+      transform: scale(1.2) rotate(-5deg);
+    }
+
+    .arrow-icon {
+      font-size: 0.9rem;
+      opacity: 0.5;
+      z-index: 2;
+      transition: all 0.3s ease;
+    }
+
+    .liquid-btn:hover .arrow-icon {
+      opacity: 1;
+      transform: translateX(4px);
+      color: var(--cyan-glow);
+    }
+
+    /* Specific Discord Accent Styling */
+    .btn-discord:hover {
+      background: linear-gradient(
+        135deg,
+        rgba(88, 101, 242, 0.3) 0%,
+        rgba(88, 101, 242, 0.1) 100%
+      );
+      border-color: rgba(88, 101, 242, 0.6);
+      box-shadow: 0 12px 30px rgba(88, 101, 242, 0.35);
+    }
+
+    /* Dynamic Glass Modal (DLLS Popup) */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 7, 18, 0.75);
+      backdrop-filter: blur(12px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      border-radius: 28px;
+      padding: 35px 30px;
+      max-width: 360px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.8),
+        0 0 30px rgba(0, 240, 255, 0.2);
+      transform: scale(0.8);
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .modal-overlay.active .modal-card {
+      transform: scale(1);
+    }
+
+    .modal-icon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 15px auto;
+      border-radius: 50%;
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid var(--cyan-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--cyan-glow);
+    }
+
+    .modal-card h2 {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+
+    .modal-card p {
+      color: var(--text-sub);
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+
+    .close-btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 14px;
+      border: none;
+      background: linear-gradient(135deg, var(--cyan-glow), var(--blue-glow));
+      color: #030712;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .close-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
     }
   </style>
 </head>
 <body>
 
-  <!-- Background Ambient Glows -->
-  <div class="bg-glow"></div>
-  <div class="bg-glow-2"></div>
+  <!-- Ambient Liquid Glow Background Orbs -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
 
-  <!-- Main Card Container -->
-  <div class="container">
+  <!-- Central Glass Hub Card -->
+  <div class="glass-hub">
     
-    <div class="avatar-wrapper">
-      <div class="profile-avatar">
+    <!-- Profile Avatar -->
+    <div class="avatar-container">
+      <div class="avatar-glow"></div>
+      <div class="avatar-glass">
         <i class="fa-solid fa-tornado"></i>
       </div>
     </div>
 
+    <!-- User Information -->
     <h1>Tornado</h1>
-    
-    <div class="handle-badge">
+    <div class="handle-pill">
       <i class="fa-brands fa-discord"></i> @Tornado
     </div>
 
-    <div class="links">
-      <a href="https://discord.gg/uYeG2sagqV" target="_blank" class="btn btn-discord">
-        <div class="btn-content">
-          <i class="fa-brands fa-discord left-icon"></i>
+    <!-- Interactive Liquid Glass Menu -->
+    <div class="menu-stack">
+      
+      <!-- Discord Server Button -->
+      <a href="https://discord.gg/uYeG2sagqV" target="_blank" class="liquid-btn btn-discord">
+        <div class="btn-left">
+          <i class="fa-brands fa-discord" style="color: #5865F2;"></i>
           <span>Discord Server</span>
         </div>
-        <i class="fa-solid fa-arrow-right arrow-icon"></i>
+        <i class="fa-solid fa-arrow-right-long arrow-icon"></i>
       </a>
 
-      <button class="btn btn-dlls" onclick="showNotice()">
-        <div class="btn-content">
-          <i class="fa-solid fa-box-archive left-icon"></i>
+      <!-- DLLS Button -->
+      <button class="liquid-btn" onclick="openModal()">
+        <div class="btn-left">
+          <i class="fa-solid fa-cube" style="color: var(--cyan-glow);"></i>
           <span>DLLS</span>
         </div>
         <i class="fa-solid fa-chevron-right arrow-icon"></i>
       </button>
+
     </div>
 
   </div>
 
-  <!-- Animated Popup Banner -->
-  <div id="toast" class="toast">
-    <i class="fa-solid fa-clock-rotate-left"></i>
-    <span>DLLS is coming soon!</span>
+  <!-- Liquid Glass Popup Modal -->
+  <div id="modalOverlay" class="modal-overlay" onclick="closeModalOnOuter(event)">
+    <div class="modal-card">
+      <div class="modal-icon">
+        <i class="fa-solid fa-hourglass-half"></i>
+      </div>
+      <h2>DLLS Project</h2>
+      <p>This module is currently under active development. Stay tuned for future updates!</p>
+      <button class="close-btn" onclick="closeModal()">Coming Soon</button>
+    </div>
   </div>
 
   <script>
-    let toastTimeout;
-    
-    function showNotice() {
-      const toast = document.getElementById("toast");
-      
-      // Reset timer if clicked rapidly
-      clearTimeout(toastTimeout);
-      
-      toast.classList.add("show");
-      
-      toastTimeout = setTimeout(() => {
-        toast.classList.remove("show");
-      }, 3000);
+    function openModal() {
+      document.getElementById('modalOverlay').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
+    }
+
+    function closeModalOnOuter(e) {
+      if (e.target.id === 'modalOverlay') {
+        closeModal();
+      }
     }
   </script>
 
