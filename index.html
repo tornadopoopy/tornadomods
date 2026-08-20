@@ -99,7 +99,7 @@
       width: 100%;
       max-width: 440px;
       max-height: 95vh;
-      padding: 36px 28px 28px 28px;
+      padding: 32px 28px 24px 28px;
       background: var(--glass-base);
       backdrop-filter: blur(35px) saturate(180%);
       -webkit-backdrop-filter: blur(35px) saturate(180%);
@@ -133,9 +133,9 @@
     /* Profile Avatar Header */
     .avatar-wrapper {
       position: relative;
-      width: 95px;
-      height: 95px;
-      margin: 0 auto 16px auto;
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 12px auto;
     }
 
     .avatar-glow-ring {
@@ -170,7 +170,7 @@
 
     /* Header & Tag */
     h1 {
-      font-size: 2rem;
+      font-size: 1.9rem;
       font-weight: 800;
       letter-spacing: -0.5px;
       background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 100%);
@@ -184,14 +184,14 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 5px 16px;
+      padding: 4px 14px;
       border-radius: 25px;
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.3);
       color: #ffffff;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 700;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     }
 
@@ -199,7 +199,7 @@
     .menu-list {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 12px;
       width: 100%;
     }
 
@@ -210,11 +210,11 @@
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      padding: 18px 20px;
-      border-radius: 22px;
+      padding: 15px 18px;
+      border-radius: 20px;
       text-decoration: none;
       color: var(--text-main);
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 700;
       border: 1px solid var(--glass-border);
       background: linear-gradient(
@@ -264,12 +264,12 @@
     .btn-left-content {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
       z-index: 2;
     }
 
     .btn-left-content i {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       transition: transform 0.3s ease;
     }
 
@@ -278,7 +278,7 @@
     }
 
     .arrow-icon {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       opacity: 0.6;
       z-index: 2;
       transition: all 0.3s ease;
@@ -296,13 +296,37 @@
       box-shadow: 0 15px 35px rgba(88, 101, 242, 0.4);
     }
 
+    /* Feedback Textarea Input */
+    .feedback-textarea {
+      width: 100%;
+      height: 100px;
+      background: rgba(10, 5, 20, 0.6);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 12px;
+      color: #ffffff;
+      font-size: 0.9rem;
+      resize: none;
+      outline: none;
+      margin-top: 12px;
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
+    }
+
+    .feedback-textarea::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .feedback-textarea:focus {
+      border-color: rgba(255, 255, 255, 0.6);
+    }
+
     /* Small Credits Button */
     .credits-btn {
-      margin-top: 20px;
+      margin-top: 16px;
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.2);
       color: rgba(255, 255, 255, 0.7);
-      padding: 7px 14px;
+      padding: 6px 12px;
       border-radius: 20px;
       font-size: 0.75rem;
       font-weight: 700;
@@ -370,7 +394,7 @@
       background: rgba(25, 10, 40, 0.9);
       border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 30px;
-      padding: 32px 20px;
+      padding: 30px 20px;
       max-width: 360px;
       width: 100%;
       text-align: center;
@@ -385,7 +409,7 @@
 
     .modal-btn {
       width: 100%;
-      padding: 13px;
+      padding: 12px;
       border-radius: 16px;
       border: none;
       background: linear-gradient(135deg, #1e3aff, #d80075);
@@ -393,41 +417,41 @@
       font-weight: 800;
       font-size: 0.95rem;
       cursor: pointer;
-      margin-top: 18px;
+      margin-top: 16px;
       box-shadow: 0 8px 20px rgba(216, 0, 117, 0.4);
     }
 
     /* Mobile Responsive Optimizations */
     @media (max-width: 480px) {
       .hub-card {
-        padding: 28px 16px 20px 16px;
+        padding: 24px 16px 18px 16px;
         border-radius: 28px;
       }
 
       .avatar-wrapper {
-        width: 80px;
-        height: 80px;
-        margin-bottom: 12px;
+        width: 75px;
+        height: 75px;
+        margin-bottom: 10px;
       }
 
       h1 {
-        font-size: 1.65rem;
+        font-size: 1.55rem;
       }
 
       .user-tag {
-        font-size: 0.82rem;
+        font-size: 0.8rem;
         padding: 4px 12px;
-        margin-bottom: 18px;
+        margin-bottom: 14px;
       }
 
       .menu-list {
-        gap: 12px;
+        gap: 10px;
       }
 
       .liquid-item {
-        padding: 15px 16px;
-        font-size: 0.92rem;
-        border-radius: 18px;
+        padding: 13px 15px;
+        font-size: 0.88rem;
+        border-radius: 16px;
       }
 
       .orb-1, .orb-2 {
@@ -477,6 +501,15 @@
           <div class="btn-left-content">
             <i class="fa-solid fa-cube" style="color: #ff52a8;"></i>
             <span>DLLS</span>
+          </div>
+          <i class="fa-solid fa-chevron-right arrow-icon"></i>
+        </button>
+
+        <!-- Feedback Button -->
+        <button class="liquid-item" onclick="openFeedbackModal()">
+          <div class="btn-left-content">
+            <i class="fa-solid fa-comment-dots" style="color: #00f2fe;"></i>
+            <span>Feedback</span>
           </div>
           <i class="fa-solid fa-chevron-right arrow-icon"></i>
         </button>
@@ -540,6 +573,17 @@
     </div>
   </div>
 
+  <!-- Modal for Feedback -->
+  <div id="feedbackModalOverlay" class="modal-backdrop" onclick="closeFeedbackModalOnOutside(event)">
+    <div class="modal-box">
+      <i class="fa-solid fa-paper-plane" style="font-size: 2.2rem; color: #00f2fe; margin-bottom: 12px;"></i>
+      <h2 style="font-size: 1.4rem; margin-bottom: 8px;">Send Feedback</h2>
+      <p style="color: var(--text-sub); font-size: 0.85rem;">Have a suggestion or bug report?</p>
+      <textarea id="feedbackText" class="feedback-textarea" placeholder="Type your message here..."></textarea>
+      <button id="sendFeedbackBtn" class="modal-btn" onclick="sendFeedback()">Submit Feedback</button>
+    </div>
+  </div>
+
   <!-- Modal for Credits -->
   <div id="creditsModalOverlay" class="modal-backdrop" onclick="closeCreditsModalOnOutside(event)">
     <div class="modal-box">
@@ -553,6 +597,8 @@
   </div>
 
   <script>
+    const DISCORD_WEBHOOK_URL = "$DISCORD_WEBHOOK";
+
     function switchTab(pageId) {
       document.getElementById('mainPage').classList.toggle('hidden', pageId !== 'mainPage');
       document.getElementById('futurePage').classList.toggle('hidden', pageId !== 'futurePage');
@@ -570,6 +616,18 @@
       if (e.target.id === 'modalOverlay') closeModal();
     }
 
+    function openFeedbackModal() {
+      document.getElementById('feedbackModalOverlay').classList.add('active');
+    }
+
+    function closeFeedbackModal() {
+      document.getElementById('feedbackModalOverlay').classList.remove('active');
+    }
+
+    function closeFeedbackModalOnOutside(e) {
+      if (e.target.id === 'feedbackModalOverlay') closeFeedbackModal();
+    }
+
     function openCreditsModal() {
       document.getElementById('creditsModalOverlay').classList.add('active');
     }
@@ -580,6 +638,54 @@
 
     function closeCreditsModalOnOutside(e) {
       if (e.target.id === 'creditsModalOverlay') closeCreditsModal();
+    }
+
+    async function sendFeedback() {
+      const input = document.getElementById('feedbackText');
+      const text = input.value.trim();
+      const btn = document.getElementById('sendFeedbackBtn');
+
+      if (!text) {
+        alert("Please enter a message before submitting.");
+        return;
+      }
+
+      if (!DISCORD_WEBHOOK_URL || !DISCORD_WEBHOOK_URL.startsWith("http")) {
+        alert("Webhook URL is not valid or has not been replaced yet.");
+        return;
+      }
+
+      btn.innerText = "Sending...";
+      btn.disabled = true;
+
+      try {
+        const response = await fetch(DISCORD_WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            username: "Tornado Hub Feedback",
+            embeds: [{
+              title: "📩 New Feedback Submission",
+              description: text,
+              color: 62207,
+              timestamp: new Date().toISOString()
+            }]
+          })
+        });
+
+        if (response.ok || response.status === 204) {
+          alert("Thank you! Your feedback has been sent.");
+          input.value = "";
+          closeFeedbackModal();
+        } else {
+          alert("Failed to send feedback. Please try again later.");
+        }
+      } catch (err) {
+        alert("An error occurred while sending feedback.");
+      } finally {
+        btn.innerText = "Submit Feedback";
+        btn.disabled = false;
+      }
     }
   </script>
 
