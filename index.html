@@ -285,6 +285,29 @@
       box-shadow: 0 15px 35px rgba(88, 101, 242, 0.4);
     }
 
+    .feedback-textarea {
+      width: 100%;
+      height: 100px;
+      background: rgba(10, 5, 20, 0.6);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 12px;
+      color: #ffffff;
+      font-size: 0.9rem;
+      resize: none;
+      outline: none;
+      margin-top: 12px;
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
+    }
+
+    .feedback-textarea::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .feedback-textarea:focus {
+      border-color: rgba(255, 255, 255, 0.6);
+    }
+
     .credits-btn {
       margin-top: 16px;
       background: rgba(255, 255, 255, 0.08);
@@ -461,6 +484,14 @@
           <i class="fa-solid fa-chevron-right arrow-icon"></i>
         </button>
 
+        <button class="liquid-item" onclick="openFeedbackModal()">
+          <div class="btn-left-content">
+            <i class="fa-solid fa-comment-dots" style="color: #00f2fe;"></i>
+            <span>Feedback</span>
+          </div>
+          <i class="fa-solid fa-chevron-right arrow-icon"></i>
+        </button>
+
         <button class="liquid-item" onclick="switchTab('futurePage')">
           <div class="btn-left-content">
             <i class="fa-solid fa-compass" style="color: #7b73ff;"></i>
@@ -516,6 +547,16 @@
     </div>
   </div>
 
+  <div id="feedbackModalOverlay" class="modal-backdrop" onclick="closeFeedbackModalOnOutside(event)">
+    <div class="modal-box">
+      <i class="fa-solid fa-paper-plane" style="font-size: 2.2rem; color: #00f2fe; margin-bottom: 12px;"></i>
+      <h2 style="font-size: 1.4rem; margin-bottom: 8px;">Send Feedback</h2>
+      <p style="color: var(--text-sub); font-size: 0.85rem;">Have a suggestion or bug report?</p>
+      <textarea id="feedbackText" class="feedback-textarea" placeholder="Type your message here..."></textarea>
+      <button id="sendFeedbackBtn" class="modal-btn" onclick="sendFeedback()">Submit Feedback</button>
+    </div>
+  </div>
+
   <div id="creditsModalOverlay" class="modal-backdrop" onclick="closeCreditsModalOnOutside(event)">
     <div class="modal-box">
       <i class="fa-solid fa-heart" style="font-size: 2.2rem; color: #ff007f; margin-bottom: 12px;"></i>
@@ -528,6 +569,8 @@
   </div>
 
   <script>
+    const DISCORD_WEBHOOK_URL = "REPLACE_WITH_DISCORD_WEBHOOK";
+
     function switchTab(pageId) {
       document.getElementById('mainPage').classList.toggle('hidden', pageId !== 'mainPage');
       document.getElementById('futurePage').classList.toggle('hidden', pageId !== 'futurePage');
@@ -545,6 +588,18 @@
       if (e.target.id === 'modalOverlay') closeModal();
     }
 
+    function openFeedbackModal() {
+      document.getElementById('feedbackModalOverlay').classList.add('active');
+    }
+
+    function closeFeedbackModal() {
+      document.getElementById('feedbackModalOverlay').classList.remove('active');
+    }
+
+    function closeFeedbackModalOnOutside(e) {
+      if (e.target.id === 'feedbackModalOverlay') closeFeedbackModal();
+    }
+
     function openCreditsModal() {
       document.getElementById('creditsModalOverlay').classList.add('active');
     }
@@ -555,6 +610,54 @@
 
     function closeCreditsModalOnOutside(e) {
       if (e.target.id === 'creditsModalOverlay') closeCreditsModal();
+    }
+
+    async function sendFeedback() {
+      const input = document.getElementById('feedbackText');
+      const text = input.value.trim();
+      const btn = document.getElementById('sendFeedbackBtn');
+
+      if (!text) {
+        alert("Please enter a message before submitting.");
+        return;
+      }
+
+      if (!DISCORD_WEBHOOK_URL || !DISCORD_WEBHOOK_URL.startsWith("http")) {
+        alert("Webhook URL non-functional or not injected yet.");
+        return;
+      }
+
+      btn.innerText = "Sending...";
+      btn.disabled = true;
+
+      try {
+        const response = await fetch(DISCORD_WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            username: "Tornado Hub Feedback",
+            embeds: [{
+              title: "📩 New Feedback Submission",
+              description: text,
+              color: 62207,
+              timestamp: new Date().toISOString()
+            }]
+          })
+        });
+
+        if (response.ok || response.status === 204) {
+          alert("Thank you! Your feedback has been sent.");
+          input.value = "";
+          closeFeedbackModal();
+        } else {
+          alert("Failed to send feedback. Please try again later.");
+        }
+      } catch (err) {
+        alert("An error occurred while sending feedback.");
+      } finally {
+        btn.innerText = "Submit Feedback";
+        btn.disabled = false;
+      }
     }
   </script>
 
