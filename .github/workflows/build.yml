@@ -16,16 +16,13 @@ concurrency:
 
 jobs:
   deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-
-      - name: Inject Secret into index.html
-        env:
-          HOOK_URL: ${{ secrets.DISCORD_WEBHOOK }}
-        run: |
-          sed -i "s|REPLACE_WITH_DISCORD_WEBHOOK|$HOOK_URL|g" index.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
