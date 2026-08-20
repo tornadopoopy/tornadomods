@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tornado Hub</title>
-  <!-- Google Fonts & Font Awesome -->
+  <!-- Google Fonts & Font Awesome Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,7 +14,6 @@
     :root {
       --navy-dark: #030712;
       --navy-mid: #0b1528;
-      --navy-accent: #1e293b;
       --cyan-glow: #00f0ff;
       --blue-glow: #3b82f6;
       --glass-bg: rgba(15, 23, 42, 0.45);
@@ -32,20 +31,20 @@
       user-select: none;
     }
 
-    /* Deep Navy Blue to Black Animated Gradient Background */
+    /* Navy Blue to Deep Black Gradient Background */
     body {
-      background: radial-gradient(circle at 50% 0%, #0d1d3a 0%, #030712 70%, #000000 100%);
+      background: radial-gradient(circle at 50% 0%, #0d1d3a 0%, #030712 65%, #000000 100%);
       color: var(--text-main);
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px;
-      overflow: hidden;
+      padding: 30px 20px;
+      overflow-x: hidden;
       position: relative;
     }
 
-    /* Ambient Liquid Orbs in Background */
+    /* Ambient Background Glows */
     .orb {
       position: absolute;
       border-radius: 50%;
@@ -56,44 +55,49 @@
     }
 
     .orb-1 {
-      width: 450px;
-      height: 450px;
-      background: rgba(0, 240, 255, 0.15);
-      top: -100px;
-      left: -100px;
+      width: 500px;
+      height: 500px;
+      background: rgba(0, 240, 255, 0.12);
+      top: -120px;
+      left: -120px;
     }
 
     .orb-2 {
-      width: 500px;
-      height: 500px;
-      background: rgba(59, 130, 246, 0.18);
+      width: 550px;
+      height: 550px;
+      background: rgba(59, 130, 246, 0.15);
       bottom: -150px;
-      right: -100px;
+      right: -120px;
       animation-delay: -6s;
     }
 
     @keyframes float {
       0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(50px, 40px) scale(1.1); }
+      100% { transform: translate(50px, 40px) scale(1.08); }
     }
 
-    /* Central Liquid Glass Container */
+    /* Extended Liquid Glass Container */
     .glass-hub {
       position: relative;
       z-index: 1;
       width: 100%;
-      max-width: 440px;
-      padding: 40px 32px;
+      max-width: 450px;
+      min-height: 620px;
+      padding: 45px 32px;
       background: var(--glass-bg);
       backdrop-filter: blur(28px) saturate(190%);
       -webkit-backdrop-filter: blur(28px) saturate(190%);
-      border-radius: 32px;
+      border-radius: 36px;
       border: 1px solid var(--glass-border);
       box-shadow: 
-        0 30px 60px rgba(0, 0, 0, 0.7),
+        0 30px 60px rgba(0, 0, 0, 0.75),
         inset 0 1px 0 rgba(255, 255, 255, 0.2),
         inset 0 -1px 0 rgba(0, 0, 0, 0.5);
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
       animation: hubAppear 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
@@ -102,12 +106,27 @@
       100% { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    /* Avatar Container with Pulsing Glass Ring */
+    /* Tab Pages Switcher Logic */
+    .page-view {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .page-view.hidden {
+      display: none;
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    /* Profile Avatar */
     .avatar-container {
       position: relative;
       width: 105px;
       height: 105px;
-      margin: 0 auto 20px auto;
+      margin: 0 auto 18px auto;
     }
 
     .avatar-glow {
@@ -140,16 +159,7 @@
       box-shadow: inset 0 4px 10px rgba(255, 255, 255, 0.2);
     }
 
-    .avatar-glass i {
-      animation: tornadoSpin 15s linear infinite;
-    }
-
-    @keyframes tornadoSpin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    /* Titles & Handles */
+    /* Typography & Badges */
     h1 {
       font-size: 2.2rem;
       font-weight: 700;
@@ -171,25 +181,25 @@
       color: var(--cyan-glow);
       font-size: 0.9rem;
       font-weight: 600;
-      margin-bottom: 32px;
+      margin-bottom: 28px;
       box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
     }
 
-    /* Liquid Glass Buttons Stack */
+    /* Extended Liquid Glass Buttons Menu */
     .menu-stack {
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 20px;
+      width: 100%;
     }
 
-    /* Liquid Glass Button Base Styling */
     .liquid-btn {
       position: relative;
       display: flex;
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      padding: 18px 24px;
+      padding: 20px 24px;
       border-radius: 20px;
       text-decoration: none;
       color: var(--text-main);
@@ -210,7 +220,7 @@
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    /* Liquid Highlight Light Beam Effect */
+    /* Hover Light Beam Animation */
     .liquid-btn::before {
       content: '';
       position: absolute;
@@ -221,18 +231,17 @@
       background: linear-gradient(
         90deg,
         transparent,
-        rgba(255, 255, 255, 0.3),
+        rgba(255, 255, 255, 0.35),
         transparent
       );
       transition: 0.6s ease;
     }
 
-    /* Hover State for Buttons */
     .liquid-btn:hover {
       transform: translateY(-4px) scale(1.02);
       border-color: rgba(0, 240, 255, 0.5);
       box-shadow: 
-        0 12px 30px rgba(0, 240, 255, 0.25),
+        0 14px 35px rgba(0, 240, 255, 0.25),
         inset 0 1px 1px rgba(255, 255, 255, 0.5);
     }
 
@@ -269,18 +278,55 @@
       color: var(--cyan-glow);
     }
 
-    /* Specific Discord Accent Styling */
     .btn-discord:hover {
       background: linear-gradient(
         135deg,
-        rgba(88, 101, 242, 0.3) 0%,
+        rgba(88, 101, 242, 0.35) 0%,
         rgba(88, 101, 242, 0.1) 100%
       );
       border-color: rgba(88, 101, 242, 0.6);
-      box-shadow: 0 12px 30px rgba(88, 101, 242, 0.35);
+      box-shadow: 0 14px 35px rgba(88, 101, 242, 0.35);
     }
 
-    /* Dynamic Glass Modal (DLLS Popup) */
+    /* Future Updates Page Layout */
+    .future-icon-box {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid var(--cyan-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: var(--cyan-glow);
+      margin-bottom: 20px;
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+    }
+
+    .future-card-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 24px;
+      margin: 20px 0 30px 0;
+      width: 100%;
+    }
+
+    .future-message {
+      font-size: 1.05rem;
+      color: var(--text-main);
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    .btn-back {
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Liquid Glass Popup Modal (DLLS) */
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -302,7 +348,7 @@
     }
 
     .modal-card {
-      background: rgba(15, 23, 42, 0.85);
+      background: rgba(15, 23, 42, 0.9);
       border: 1px solid rgba(0, 240, 255, 0.3);
       border-radius: 28px;
       padding: 35px 30px;
@@ -366,53 +412,92 @@
 </head>
 <body>
 
-  <!-- Ambient Liquid Glow Background Orbs -->
+  <!-- Ambient Liquid Glow Orbs -->
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
 
-  <!-- Central Glass Hub Card -->
+  <!-- Main Glass Container Hub -->
   <div class="glass-hub">
     
-    <!-- Profile Avatar -->
-    <div class="avatar-container">
-      <div class="avatar-glow"></div>
-      <div class="avatar-glass">
-        <i class="fa-solid fa-tornado"></i>
+    <!-- PAGE 1: Main Menu -->
+    <div id="mainPage" class="page-view">
+      
+      <!-- Profile Header -->
+      <div class="avatar-container">
+        <div class="avatar-glow"></div>
+        <div class="avatar-glass">
+          <i class="fa-solid fa-tornado"></i>
+        </div>
+      </div>
+
+      <h1>Tornado</h1>
+      <div class="handle-pill">
+        <i class="fa-brands fa-discord"></i> @Tornado
+      </div>
+
+      <!-- Extended Liquid Menu Options -->
+      <div class="menu-stack">
+        
+        <!-- Discord Server Link -->
+        <a href="https://discord.gg/uYeG2sagqV" target="_blank" class="liquid-btn btn-discord">
+          <div class="btn-left">
+            <i class="fa-brands fa-discord" style="color: #5865F2;"></i>
+            <span>Discord Server</span>
+          </div>
+          <i class="fa-solid fa-arrow-right-long arrow-icon"></i>
+        </a>
+
+        <!-- DLLS Button -->
+        <button class="liquid-btn" onclick="openModal()">
+          <div class="btn-left">
+            <i class="fa-solid fa-cube" style="color: var(--cyan-glow);"></i>
+            <span>DLLS</span>
+          </div>
+          <i class="fa-solid fa-chevron-right arrow-icon"></i>
+        </button>
+
+        <!-- Future Page Switcher Button -->
+        <button class="liquid-btn" onclick="switchPage('futurePage')">
+          <div class="btn-left">
+            <i class="fa-solid fa-compass" style="color: #3b82f6;"></i>
+            <span>Future Updates</span>
+          </div>
+          <i class="fa-solid fa-chevron-right arrow-icon"></i>
+        </button>
+
       </div>
     </div>
 
-    <!-- User Information -->
-    <h1>Tornado</h1>
-    <div class="handle-pill">
-      <i class="fa-brands fa-discord"></i> @Tornado
-    </div>
-
-    <!-- Interactive Liquid Glass Menu -->
-    <div class="menu-stack">
+    <!-- PAGE 2: What's Coming in the Future -->
+    <div id="futurePage" class="page-view hidden">
       
-      <!-- Discord Server Button -->
-      <a href="https://discord.gg/uYeG2sagqV" target="_blank" class="liquid-btn btn-discord">
-        <div class="btn-left">
-          <i class="fa-brands fa-discord" style="color: #5865F2;"></i>
-          <span>Discord Server</span>
-        </div>
-        <i class="fa-solid fa-arrow-right-long arrow-icon"></i>
-      </a>
+      <div class="future-icon-box">
+        <i class="fa-solid fa-code-branch"></i>
+      </div>
 
-      <!-- DLLS Button -->
-      <button class="liquid-btn" onclick="openModal()">
+      <h1>Future Roadmap</h1>
+      <div class="handle-pill">
+        <i class="fa-solid fa-wrench"></i> Development Mode
+      </div>
+
+      <div class="future-card-box">
+        <p class="future-message">
+          This page is being worked on and no this is not a error i just wrote this
+        </p>
+      </div>
+
+      <button class="liquid-btn btn-back" onclick="switchPage('mainPage')">
         <div class="btn-left">
-          <i class="fa-solid fa-cube" style="color: var(--cyan-glow);"></i>
-          <span>DLLS</span>
+          <i class="fa-solid fa-arrow-left"></i>
+          <span>Back to Hub</span>
         </div>
-        <i class="fa-solid fa-chevron-right arrow-icon"></i>
       </button>
 
     </div>
 
   </div>
 
-  <!-- Liquid Glass Popup Modal -->
+  <!-- DLLS Liquid Glass Modal -->
   <div id="modalOverlay" class="modal-overlay" onclick="closeModalOnOuter(event)">
     <div class="modal-card">
       <div class="modal-icon">
@@ -425,6 +510,21 @@
   </div>
 
   <script>
+    // Tab/Page Navigation Logic
+    function switchPage(pageId) {
+      const mainPage = document.getElementById('mainPage');
+      const futurePage = document.getElementById('futurePage');
+
+      if (pageId === 'futurePage') {
+        mainPage.classList.add('hidden');
+        futurePage.classList.remove('hidden');
+      } else {
+        futurePage.classList.add('hidden');
+        mainPage.classList.remove('hidden');
+      }
+    }
+
+    // Modal Control Logic
     function openModal() {
       document.getElementById('modalOverlay').classList.add('active');
     }
