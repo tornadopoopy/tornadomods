@@ -3,160 +3,330 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tornado | Hub</title>
+  <title>Tornado | Official Hub</title>
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <style>
+    :root {
+      --bg-dark: #070b19;
+      --card-bg: rgba(15, 23, 42, 0.65);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --primary-cyan: #38bdf8;
+      --secondary-blue: #6366f1;
+      --accent-glow: rgba(56, 189, 248, 0.15);
+      --discord-purple: #5865F2;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
     body {
-      background-color: #0b132b;
-      color: #ffffff;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 20px;
+      overflow-x: hidden;
+      position: relative;
     }
 
+    /* Dynamic Background Elements */
+    .bg-glow {
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, var(--secondary-blue) 0%, rgba(0,0,0,0) 70%);
+      top: 15%;
+      left: 20%;
+      filter: blur(90px);
+      opacity: 0.35;
+      z-index: 0;
+      animation: float 8s ease-in-out infinite alternate;
+    }
+
+    .bg-glow-2 {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, var(--primary-cyan) 0%, rgba(0,0,0,0) 70%);
+      bottom: 15%;
+      right: 20%;
+      filter: blur(90px);
+      opacity: 0.25;
+      z-index: 0;
+      animation: float 10s ease-in-out infinite alternate-reverse;
+    }
+
+    @keyframes float {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(30px, 40px); }
+    }
+
+    /* Glassmorphism Card Container */
     .container {
-      background: #1c2541;
+      position: relative;
+      z-index: 1;
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       width: 100%;
-      max-width: 420px;
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      border: 1px solid #3a506b;
+      max-width: 400px;
+      padding: 40px 30px;
+      border-radius: 24px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.1);
       text-align: center;
+    }
+
+    /* Profile Avatar & Ring Glow */
+    .avatar-wrapper {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 20px auto;
+    }
+
+    .avatar-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary-cyan), var(--secondary-blue));
+      filter: blur(8px);
+      opacity: 0.7;
     }
 
     .profile-avatar {
-      width: 90px;
-      height: 90px;
+      position: relative;
+      width: 100%;
+      height: 100%;
       border-radius: 50%;
-      background: #3a506b;
+      background: #0f172a;
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: 0 auto 15px auto;
-      font-size: 2.5rem;
-      color: #4cc9f0;
-      border: 3px solid #4cc9f0;
+      font-size: 2.8rem;
+      color: var(--primary-cyan);
+      border: 2px solid rgba(255, 255, 255, 0.1);
     }
 
+    .profile-avatar i {
+      animation: spin 20s linear infinite;
+    }
+
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Typography */
     h1 {
-      font-size: 1.8rem;
-      margin-bottom: 5px;
-      color: #ffffff;
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+      background: linear-gradient(135deg, #ffffff 30%, var(--primary-cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    .handle {
-      color: #4cc9f0;
-      font-size: 0.95rem;
-      margin-bottom: 25px;
+    .handle-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      color: var(--primary-cyan);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
       font-weight: 600;
+      margin-bottom: 30px;
+      letter-spacing: 0.3px;
     }
 
+    /* Navigation Links / Buttons */
     .links {
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 16px;
     }
 
     .btn {
+      position: relative;
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 10px;
+      justify-content: space-between;
       width: 100%;
-      padding: 14px;
-      border-radius: 10px;
-      font-size: 1rem;
+      padding: 16px 20px;
+      border-radius: 14px;
+      font-size: 0.95rem;
       font-weight: 600;
       text-decoration: none;
-      border: none;
+      border: 1px solid transparent;
       cursor: pointer;
-      transition: all 0.2s ease-in-out;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
     }
 
+    .btn i.left-icon {
+      font-size: 1.25rem;
+    }
+
+    .btn i.arrow-icon {
+      font-size: 0.8rem;
+      opacity: 0.5;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .btn-content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Discord Button Styling */
     .btn-discord {
-      background-color: #5865F2;
+      background: linear-gradient(135deg, #5865F2, #4752C4);
       color: #ffffff;
+      box-shadow: 0 4px 20px rgba(88, 101, 242, 0.3);
     }
 
     .btn-discord:hover {
-      background-color: #4752C4;
-      transform: translateY(-2px);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(88, 101, 242, 0.5);
     }
 
+    .btn-discord:hover .arrow-icon {
+      transform: translateX(4px);
+      opacity: 1;
+    }
+
+    /* DLLS Button Styling */
     .btn-dlls {
-      background-color: #3a506b;
-      color: #ffffff;
-      border: 1px solid #5bc0be;
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-main);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(10px);
     }
 
     .btn-dlls:hover {
-      background-color: #5bc0be;
-      color: #0b132b;
-      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
     }
 
+    .btn-dlls:hover .arrow-icon {
+      transform: translateX(4px);
+      opacity: 1;
+    }
+
+    /* Fancy Glass Toast Notification */
     .toast {
-      visibility: hidden;
-      min-width: 200px;
-      background-color: #5bc0be;
-      color: #0b132b;
-      text-align: center;
-      border-radius: 8px;
-      padding: 12px;
       position: fixed;
-      z-index: 1;
-      bottom: 30px;
-      font-weight: bold;
-      opacity: 0;
-      transition: opacity 0.3s, visibility 0.3s;
+      bottom: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid var(--primary-cyan);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
+                  0 0 15px rgba(56, 189, 248, 0.2);
+      backdrop-filter: blur(12px);
+      color: var(--text-main);
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 10;
+      transition: bottom 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .toast i {
+      color: var(--primary-cyan);
     }
 
     .toast.show {
-      visibility: visible;
-      opacity: 1;
+      bottom: 40px;
     }
   </style>
 </head>
 <body>
 
+  <!-- Background Ambient Glows -->
+  <div class="bg-glow"></div>
+  <div class="bg-glow-2"></div>
+
+  <!-- Main Card Container -->
   <div class="container">
-    <div class="profile-avatar">
-      <i class="fa-solid fa-tornado"></i>
-    </div>
     
+    <div class="avatar-wrapper">
+      <div class="profile-avatar">
+        <i class="fa-solid fa-tornado"></i>
+      </div>
+    </div>
+
     <h1>Tornado</h1>
-    <div class="handle">@Tornado</div>
+    
+    <div class="handle-badge">
+      <i class="fa-brands fa-discord"></i> @Tornado
+    </div>
 
     <div class="links">
       <a href="https://discord.gg/uYeG2sagqV" target="_blank" class="btn btn-discord">
-        <i class="fa-brands fa-discord"></i> Discord Server
+        <div class="btn-content">
+          <i class="fa-brands fa-discord left-icon"></i>
+          <span>Discord Server</span>
+        </div>
+        <i class="fa-solid fa-arrow-right arrow-icon"></i>
       </a>
 
       <button class="btn btn-dlls" onclick="showNotice()">
-        <i class="fa-solid fa-file-code"></i> DLLS
+        <div class="btn-content">
+          <i class="fa-solid fa-box-archive left-icon"></i>
+          <span>DLLS</span>
+        </div>
+        <i class="fa-solid fa-chevron-right arrow-icon"></i>
       </button>
     </div>
+
   </div>
 
-  <div id="toast" class="toast">DLLS: Coming Soon!</div>
+  <!-- Animated Popup Banner -->
+  <div id="toast" class="toast">
+    <i class="fa-solid fa-clock-rotate-left"></i>
+    <span>DLLS is coming soon!</span>
+  </div>
 
   <script>
+    let toastTimeout;
+    
     function showNotice() {
       const toast = document.getElementById("toast");
+      
+      // Reset timer if clicked rapidly
+      clearTimeout(toastTimeout);
+      
       toast.classList.add("show");
-      setTimeout(() => {
+      
+      toastTimeout = setTimeout(() => {
         toast.classList.remove("show");
-      }, 2500);
+      }, 3000);
     }
   </script>
 
