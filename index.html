@@ -3,23 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tornado Hub</title>
-  <!-- Google Fonts & Font Awesome Icons -->
+  <title>Tornado Hub | Liquid Glass Edition</title>
+  
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
     :root {
-      --navy-dark: #030712;
-      --navy-mid: #0b1528;
-      --cyan-glow: #00f0ff;
-      --blue-glow: #3b82f6;
-      --glass-bg: rgba(15, 23, 42, 0.45);
-      --glass-border: rgba(255, 255, 255, 0.12);
-      --glass-shine: rgba(255, 255, 255, 0.25);
-      --text-main: #f8fafc;
+      --bg-navy: #020617;
+      --bg-black: #000000;
+      --cyan-neon: #00f2fe;
+      --blue-electric: #4facfe;
+      --glass-base: rgba(15, 23, 42, 0.55);
+      --glass-border: rgba(255, 255, 255, 0.15);
+      --glass-highlight: rgba(255, 255, 255, 0.4);
+      --text-main: #ffffff;
       --text-sub: #94a3b8;
     }
 
@@ -27,142 +28,135 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       user-select: none;
     }
 
-    /* Navy Blue to Deep Black Gradient Background */
+    /* Navy Blue to Black Deep Gradient Background */
     body {
-      background: radial-gradient(circle at 50% 0%, #0d1d3a 0%, #030712 65%, #000000 100%);
+      background: radial-gradient(circle at 50% -20%, #0f172a 0%, #020617 60%, #000000 100%);
       color: var(--text-main);
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 30px 20px;
+      padding: 40px 20px;
       overflow-x: hidden;
       position: relative;
     }
 
-    /* Ambient Background Glows */
-    .orb {
+    /* Ambient Liquid Orbs */
+    .liquid-orb {
       position: absolute;
       border-radius: 50%;
-      filter: blur(100px);
+      filter: blur(90px);
       z-index: 0;
       pointer-events: none;
-      animation: float 12s infinite ease-in-out alternate;
+      animation: floatOrb 10s ease-in-out infinite alternate;
     }
 
     .orb-1 {
-      width: 500px;
-      height: 500px;
-      background: rgba(0, 240, 255, 0.12);
-      top: -120px;
-      left: -120px;
+      width: 450px;
+      height: 450px;
+      background: rgba(0, 242, 254, 0.15);
+      top: -100px;
+      left: -100px;
     }
 
     .orb-2 {
-      width: 550px;
-      height: 550px;
-      background: rgba(59, 130, 246, 0.15);
+      width: 500px;
+      height: 500px;
+      background: rgba(79, 172, 254, 0.18);
       bottom: -150px;
-      right: -120px;
-      animation-delay: -6s;
+      right: -100px;
+      animation-delay: -5s;
     }
 
-    @keyframes float {
+    @keyframes floatOrb {
       0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(50px, 40px) scale(1.08); }
+      100% { transform: translate(40px, 50px) scale(1.1); }
     }
 
-    /* Extended Liquid Glass Container */
-    .glass-hub {
+    /* Taller & Sleeker Liquid Glass Card */
+    .hub-card {
       position: relative;
       z-index: 1;
       width: 100%;
-      max-width: 450px;
-      min-height: 620px;
-      padding: 45px 32px;
-      background: var(--glass-bg);
-      backdrop-filter: blur(28px) saturate(190%);
-      -webkit-backdrop-filter: blur(28px) saturate(190%);
-      border-radius: 36px;
+      max-width: 460px;
+      min-height: 680px;
+      padding: 48px 36px;
+      background: var(--glass-base);
+      backdrop-filter: blur(30px) saturate(200%);
+      -webkit-backdrop-filter: blur(30px) saturate(200%);
+      border-radius: 40px;
       border: 1px solid var(--glass-border);
       box-shadow: 
-        0 30px 60px rgba(0, 0, 0, 0.75),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+        0 30px 80px rgba(0, 0, 0, 0.8),
+        inset 0 1.5px 0 var(--glass-highlight),
+        inset 0 -1.5px 0 rgba(0, 0, 0, 0.6);
       text-align: center;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      overflow: hidden;
-      animation: hubAppear 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      justify-content: space-between;
     }
 
-    @keyframes hubAppear {
-      0% { opacity: 0; transform: translateY(30px) scale(0.95); }
-      100% { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    /* Tab Pages Switcher Logic */
-    .page-view {
+    /* Page Navigation Logic */
+    .page {
       display: flex;
       flex-direction: column;
       align-items: center;
       width: 100%;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: opacity 0.4s ease, transform 0.4s ease;
     }
 
-    .page-view.hidden {
+    .page.hidden {
       display: none;
       opacity: 0;
-      transform: scale(0.95);
+      transform: scale(0.96);
     }
 
-    /* Profile Avatar */
-    .avatar-container {
+    /* Avatar Header */
+    .avatar-wrapper {
       position: relative;
-      width: 105px;
-      height: 105px;
-      margin: 0 auto 18px auto;
+      width: 110px;
+      height: 110px;
+      margin: 0 auto 20px auto;
     }
 
-    .avatar-glow {
+    .avatar-glow-ring {
       position: absolute;
-      inset: -4px;
+      inset: -5px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--cyan-glow), var(--blue-glow));
-      filter: blur(12px);
+      background: linear-gradient(135deg, var(--cyan-neon), var(--blue-electric));
+      filter: blur(15px);
       opacity: 0.6;
-      animation: pulseGlow 4s infinite alternate;
     }
 
-    @keyframes pulseGlow {
-      0% { opacity: 0.4; transform: scale(0.98); }
-      100% { opacity: 0.8; transform: scale(1.05); }
-    }
-
-    .avatar-glass {
+    .avatar-glass-box {
       position: relative;
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      background: rgba(11, 21, 40, 0.8);
-      border: 1.5px solid rgba(255, 255, 255, 0.3);
+      background: rgba(2, 6, 23, 0.85);
+      border: 2px solid rgba(255, 255, 255, 0.25);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.8rem;
-      color: var(--cyan-glow);
-      box-shadow: inset 0 4px 10px rgba(255, 255, 255, 0.2);
+      font-size: 3rem;
+      color: var(--cyan-neon);
+      box-shadow: inset 0 4px 15px rgba(255, 255, 255, 0.15);
     }
 
-    /* Typography & Badges */
+    /* Static Icon (No Rotation) */
+    .avatar-glass-box i {
+      transform: none !important;
+      animation: none !important;
+    }
+
+    /* User Details */
     h1 {
-      font-size: 2.2rem;
-      font-weight: 700;
+      font-size: 2.3rem;
+      font-weight: 800;
       letter-spacing: -0.5px;
       background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
       -webkit-background-clip: text;
@@ -170,168 +164,152 @@
       margin-bottom: 6px;
     }
 
-    .handle-pill {
+    .user-tag {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 6px 16px;
-      border-radius: 20px;
-      background: rgba(0, 240, 255, 0.06);
-      border: 1px solid rgba(0, 240, 255, 0.25);
-      color: var(--cyan-glow);
-      font-size: 0.9rem;
-      font-weight: 600;
-      margin-bottom: 28px;
-      box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
+      gap: 8px;
+      padding: 6px 18px;
+      border-radius: 25px;
+      background: rgba(0, 242, 254, 0.08);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      color: var(--cyan-neon);
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 36px;
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.15);
     }
 
-    /* Extended Liquid Glass Buttons Menu */
-    .menu-stack {
+    /* Extended Liquid Glass Menu */
+    .menu-list {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 22px; /* Taller menu distribution */
       width: 100%;
     }
 
-    .liquid-btn {
+    /* Interactive Liquid Glass Buttons */
+    .liquid-item {
       position: relative;
       display: flex;
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      padding: 20px 24px;
-      border-radius: 20px;
+      padding: 22px 26px;
+      border-radius: 24px;
       text-decoration: none;
       color: var(--text-main);
-      font-size: 1.05rem;
-      font-weight: 600;
+      font-size: 1.1rem;
+      font-weight: 700;
       border: 1px solid var(--glass-border);
       background: linear-gradient(
         135deg,
-        rgba(255, 255, 255, 0.1) 0%,
-        rgba(255, 255, 255, 0.03) 50%,
-        rgba(0, 0, 0, 0.2) 100%
+        rgba(255, 255, 255, 0.12) 0%,
+        rgba(255, 255, 255, 0.03) 60%,
+        rgba(0, 0, 0, 0.3) 100%
       );
       box-shadow: 
-        0 8px 20px rgba(0, 0, 0, 0.3),
-        inset 0 1px 0 var(--glass-shine);
+        0 10px 25px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 var(--glass-highlight);
       cursor: pointer;
       overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    /* Hover Light Beam Animation */
-    .liquid-btn::before {
+    /* Liquid Sheen Hover Effect */
+    .liquid-item::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
+      top: -50%;
+      left: -150%;
+      width: 200%;
+      height: 200%;
       background: linear-gradient(
-        90deg,
+        60deg,
         transparent,
         rgba(255, 255, 255, 0.35),
         transparent
       );
+      transform: rotate(25deg);
       transition: 0.6s ease;
     }
 
-    .liquid-btn:hover {
-      transform: translateY(-4px) scale(1.02);
-      border-color: rgba(0, 240, 255, 0.5);
+    .liquid-item:hover {
+      transform: translateY(-5px) scale(1.02);
+      border-color: rgba(0, 242, 254, 0.6);
       box-shadow: 
-        0 14px 35px rgba(0, 240, 255, 0.25),
-        inset 0 1px 1px rgba(255, 255, 255, 0.5);
+        0 15px 35px rgba(0, 242, 254, 0.25),
+        inset 0 1px 2px rgba(255, 255, 255, 0.6);
     }
 
-    .liquid-btn:hover::before {
+    .liquid-item:hover::before {
       left: 100%;
     }
 
-    .btn-left {
+    .btn-left-content {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 16px;
       z-index: 2;
     }
 
-    .btn-left i {
-      font-size: 1.3rem;
+    .btn-left-content i {
+      font-size: 1.4rem;
       transition: transform 0.3s ease;
     }
 
-    .liquid-btn:hover .btn-left i {
-      transform: scale(1.2) rotate(-5deg);
+    .liquid-item:hover .btn-left-content i {
+      transform: scale(1.2);
     }
 
     .arrow-icon {
-      font-size: 0.9rem;
-      opacity: 0.5;
+      font-size: 1rem;
+      opacity: 0.4;
       z-index: 2;
       transition: all 0.3s ease;
     }
 
-    .liquid-btn:hover .arrow-icon {
+    .liquid-item:hover .arrow-icon {
       opacity: 1;
-      transform: translateX(4px);
-      color: var(--cyan-glow);
+      transform: translateX(5px);
+      color: var(--cyan-neon);
     }
 
+    /* Specific Button Highlights */
     .btn-discord:hover {
-      background: linear-gradient(
-        135deg,
-        rgba(88, 101, 242, 0.35) 0%,
-        rgba(88, 101, 242, 0.1) 100%
-      );
-      border-color: rgba(88, 101, 242, 0.6);
-      box-shadow: 0 14px 35px rgba(88, 101, 242, 0.35);
+      background: linear-gradient(135deg, rgba(88, 101, 242, 0.4) 0%, rgba(88, 101, 242, 0.1) 100%);
+      border-color: rgba(88, 101, 242, 0.8);
+      box-shadow: 0 15px 35px rgba(88, 101, 242, 0.35);
     }
 
-    /* Future Updates Page Layout */
-    .future-icon-box {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      background: rgba(0, 240, 255, 0.1);
-      border: 1px solid var(--cyan-glow);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      color: var(--cyan-glow);
-      margin-bottom: 20px;
-      box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
-    }
-
-    .future-card-box {
+    /* Page 2 (Future Page) Styling */
+    .notice-card {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--glass-border);
-      border-radius: 20px;
-      padding: 24px;
-      margin: 20px 0 30px 0;
+      border-radius: 24px;
+      padding: 30px 24px;
+      margin: 25px 0 35px 0;
       width: 100%;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
     }
 
-    .future-message {
-      font-size: 1.05rem;
+    .notice-text {
+      font-size: 1.1rem;
       color: var(--text-main);
       line-height: 1.6;
-      font-weight: 500;
+      font-weight: 600;
     }
 
     .btn-back {
       justify-content: center;
       background: rgba(255, 255, 255, 0.05);
-      border-color: rgba(255, 255, 255, 0.2);
     }
 
-    /* Liquid Glass Popup Modal (DLLS) */
-    .modal-overlay {
+    /* DLLS Modal Overlay */
+    .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(3, 7, 18, 0.75);
-      backdrop-filter: blur(12px);
+      background: rgba(2, 6, 23, 0.8);
+      backdrop-filter: blur(15px);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -342,105 +320,71 @@
       padding: 20px;
     }
 
-    .modal-overlay.active {
+    .modal-backdrop.active {
       opacity: 1;
       pointer-events: auto;
     }
 
-    .modal-card {
+    .modal-box {
       background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(0, 240, 255, 0.3);
-      border-radius: 28px;
-      padding: 35px 30px;
-      max-width: 360px;
+      border: 1px solid rgba(0, 242, 254, 0.4);
+      border-radius: 32px;
+      padding: 40px 30px;
+      max-width: 380px;
       width: 100%;
       text-align: center;
-      box-shadow: 
-        0 25px 50px rgba(0, 0, 0, 0.8),
-        0 0 30px rgba(0, 240, 255, 0.2);
-      transform: scale(0.8);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(0, 242, 254, 0.25);
+      transform: scale(0.85);
       transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    .modal-overlay.active .modal-card {
+    .modal-backdrop.active .modal-box {
       transform: scale(1);
     }
 
-    .modal-icon {
-      width: 60px;
-      height: 60px;
-      margin: 0 auto 15px auto;
-      border-radius: 50%;
-      background: rgba(0, 240, 255, 0.1);
-      border: 1px solid var(--cyan-glow);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      color: var(--cyan-glow);
-    }
-
-    .modal-card h2 {
-      font-size: 1.5rem;
-      margin-bottom: 8px;
-    }
-
-    .modal-card p {
-      color: var(--text-sub);
-      font-size: 0.95rem;
-      margin-bottom: 24px;
-    }
-
-    .close-btn {
+    .modal-btn {
       width: 100%;
-      padding: 12px;
-      border-radius: 14px;
+      padding: 14px;
+      border-radius: 16px;
       border: none;
-      background: linear-gradient(135deg, var(--cyan-glow), var(--blue-glow));
-      color: #030712;
-      font-weight: 700;
-      font-size: 0.95rem;
+      background: linear-gradient(135deg, var(--cyan-neon), var(--blue-electric));
+      color: #020617;
+      font-weight: 800;
+      font-size: 1rem;
       cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .close-btn:hover {
-      opacity: 0.9;
-      transform: translateY(-2px);
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Ambient Liquid Glow Orbs -->
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
+  <!-- Ambient Liquid Background Glows -->
+  <div class="liquid-orb orb-1"></div>
+  <div class="liquid-orb orb-2"></div>
 
-  <!-- Main Glass Container Hub -->
-  <div class="glass-hub">
+  <!-- Main Glass Card Container -->
+  <div class="hub-card">
     
     <!-- PAGE 1: Main Menu -->
-    <div id="mainPage" class="page-view">
+    <div id="mainPage" class="page">
       
-      <!-- Profile Header -->
-      <div class="avatar-container">
-        <div class="avatar-glow"></div>
-        <div class="avatar-glass">
+      <div class="avatar-wrapper">
+        <div class="avatar-glow-ring"></div>
+        <div class="avatar-glass-box">
           <i class="fa-solid fa-tornado"></i>
         </div>
       </div>
 
       <h1>Tornado</h1>
-      <div class="handle-pill">
+      <div class="user-tag">
         <i class="fa-brands fa-discord"></i> @Tornado
       </div>
 
-      <!-- Extended Liquid Menu Options -->
-      <div class="menu-stack">
+      <div class="menu-list">
         
-        <!-- Discord Server Link -->
-        <a href="https://discord.gg/uYeG2sagqV" target="_blank" class="liquid-btn btn-discord">
-          <div class="btn-left">
+        <!-- Discord Server -->
+        <a href="https://discord.gg/uYeG2sagqV" target="_blank" class="liquid-item btn-discord">
+          <div class="btn-left-content">
             <i class="fa-brands fa-discord" style="color: #5865F2;"></i>
             <span>Discord Server</span>
           </div>
@@ -448,18 +392,18 @@
         </a>
 
         <!-- DLLS Button -->
-        <button class="liquid-btn" onclick="openModal()">
-          <div class="btn-left">
-            <i class="fa-solid fa-cube" style="color: var(--cyan-glow);"></i>
+        <button class="liquid-item" onclick="openModal()">
+          <div class="btn-left-content">
+            <i class="fa-solid fa-cube" style="color: var(--cyan-neon);"></i>
             <span>DLLS</span>
           </div>
           <i class="fa-solid fa-chevron-right arrow-icon"></i>
         </button>
 
-        <!-- Future Page Switcher Button -->
-        <button class="liquid-btn" onclick="switchPage('futurePage')">
-          <div class="btn-left">
-            <i class="fa-solid fa-compass" style="color: #3b82f6;"></i>
+        <!-- Future Updates Button -->
+        <button class="liquid-item" onclick="switchTab('futurePage')">
+          <div class="btn-left-content">
+            <i class="fa-solid fa-compass" style="color: var(--blue-electric);"></i>
             <span>Future Updates</span>
           </div>
           <i class="fa-solid fa-chevron-right arrow-icon"></i>
@@ -468,26 +412,28 @@
       </div>
     </div>
 
-    <!-- PAGE 2: What's Coming in the Future -->
-    <div id="futurePage" class="page-view hidden">
+    <!-- PAGE 2: Future Updates Roadmap -->
+    <div id="futurePage" class="page hidden">
       
-      <div class="future-icon-box">
-        <i class="fa-solid fa-code-branch"></i>
+      <div class="avatar-wrapper" style="width: 80px; height: 80px;">
+        <div class="avatar-glass-box" style="font-size: 2rem;">
+          <i class="fa-solid fa-code-branch" style="color: var(--cyan-neon);"></i>
+        </div>
       </div>
 
       <h1>Future Roadmap</h1>
-      <div class="handle-pill">
-        <i class="fa-solid fa-wrench"></i> Development Mode
+      <div class="user-tag">
+        <i class="fa-solid fa-wrench"></i> In Progress
       </div>
 
-      <div class="future-card-box">
-        <p class="future-message">
+      <div class="notice-card">
+        <p class="notice-text">
           This page is being worked on and no this is not a error i just wrote this
         </p>
       </div>
 
-      <button class="liquid-btn btn-back" onclick="switchPage('mainPage')">
-        <div class="btn-left">
+      <button class="liquid-item btn-back" onclick="switchTab('mainPage')">
+        <div class="btn-left-content">
           <i class="fa-solid fa-arrow-left"></i>
           <span>Back to Hub</span>
         </div>
@@ -498,33 +444,21 @@
   </div>
 
   <!-- DLLS Liquid Glass Modal -->
-  <div id="modalOverlay" class="modal-overlay" onclick="closeModalOnOuter(event)">
-    <div class="modal-card">
-      <div class="modal-icon">
-        <i class="fa-solid fa-hourglass-half"></i>
-      </div>
-      <h2>DLLS Project</h2>
-      <p>This module is currently under active development. Stay tuned for future updates!</p>
-      <button class="close-btn" onclick="closeModal()">Coming Soon</button>
+  <div id="modalOverlay" class="modal-backdrop" onclick="closeModalOnOutside(event)">
+    <div class="modal-box">
+      <i class="fa-solid fa-hourglass-half" style="font-size: 2.5rem; color: var(--cyan-neon); margin-bottom: 15px;"></i>
+      <h2 style="font-size: 1.6rem; margin-bottom: 10px;">DLLS Status</h2>
+      <p style="color: var(--text-sub); font-size: 0.95rem;">This module is currently under construction and will release soon.</p>
+      <button class="modal-btn" onclick="closeModal()">Coming Soon</button>
     </div>
   </div>
 
   <script>
-    // Tab/Page Navigation Logic
-    function switchPage(pageId) {
-      const mainPage = document.getElementById('mainPage');
-      const futurePage = document.getElementById('futurePage');
-
-      if (pageId === 'futurePage') {
-        mainPage.classList.add('hidden');
-        futurePage.classList.remove('hidden');
-      } else {
-        futurePage.classList.add('hidden');
-        mainPage.classList.remove('hidden');
-      }
+    function switchTab(pageId) {
+      document.getElementById('mainPage').classList.toggle('hidden', pageId !== 'mainPage');
+      document.getElementById('futurePage').classList.toggle('hidden', pageId !== 'futurePage');
     }
 
-    // Modal Control Logic
     function openModal() {
       document.getElementById('modalOverlay').classList.add('active');
     }
@@ -533,10 +467,8 @@
       document.getElementById('modalOverlay').classList.remove('active');
     }
 
-    function closeModalOnOuter(e) {
-      if (e.target.id === 'modalOverlay') {
-        closeModal();
-      }
+    function closeModalOnOutside(e) {
+      if (e.target.id === 'modalOverlay') closeModal();
     }
   </script>
 
